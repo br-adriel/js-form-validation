@@ -131,7 +131,7 @@ cepInput.addEventListener("focusout", () => {
   }
 });
 
-// Input de Senha
+// Input de senha
 const senhaInput = document.getElementById("senha");
 const senhaErros = document.getElementById("erro-senha");
 
@@ -187,5 +187,51 @@ senhaInput.addEventListener("focusout", () => {
       }
     }
     senhaErros.style.display = "flex";
+  }
+});
+
+// Input de confimação de senha
+const senha2Input = document.getElementById("senha2");
+const senha2Erros = document.getElementById("erro-senha2");
+
+senha2Input.addEventListener("focusin", () => {
+  senha2Input.classList.remove("invalido");
+  senha2Input.classList.remove("valido");
+  senha2Erros.style.display = "none";
+});
+
+senha2Input.addEventListener("focusout", () => {
+  if (senha2Input.checkValidity()) {
+    senha2Input.classList.remove("invalido");
+    senha2Input.classList.add("valido");
+
+    senha2Erros.style.display = "none";
+  } else {
+    senha2Input.classList.remove("valido");
+    senha2Input.classList.add("invalido");
+
+    limparErros(senha2Erros);
+
+    // verifica se ta preenchido
+    if (senha2Input.validity.valueMissing) {
+      adicionarErro(
+        "A confirmação de senha é um campo obrigatório",
+        senha2Erros
+      );
+    }
+
+    // verifica se atende comprimento minimo
+    if (senha2Input.validity.tooShort) {
+      adicionarErro(
+        "A confirmação de senha precisa ter no mínimo 8 carcteres",
+        senha2Erros
+      );
+    }
+
+    // verifica se esta diferente do campo de senha
+    if (senhaInput.value !== senha2Input.value) {
+      adicionarErro("As senhas são diferentes", senha2Erros);
+    }
+    senha2Erros.style.display = "flex";
   }
 });
