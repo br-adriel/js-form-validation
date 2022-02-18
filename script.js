@@ -163,28 +163,25 @@ senhaInput.addEventListener("focusout", () => {
       adicionarErro("A senha precisa ter no mínimo 8 carcteres", senhaErros);
     }
 
-    // verifica se atende ao formato especificado
-    if (senhaInput.validity.patternMismatch) {
-      // nao tem numero
-      if (/(?=.*[0-9])/.test(senhaInput.value) === false) {
-        adicionarErro("A senha precisa ter no mínimo 1 número", senhaErros);
-      }
+    // nao tem numero
+    if (/(?=.*[0-9])/.test(senhaInput.value) === false) {
+      adicionarErro("A senha precisa ter no mínimo 1 número", senhaErros);
+    }
 
-      // nao tem letra minuscula
-      if (/(?=.*[a-z])/.test(senhaInput.value) === false) {
-        adicionarErro(
-          "A senha precisa ter no mínimo 1 letra minúscula",
-          senhaErros
-        );
-      }
+    // nao tem letra minuscula
+    if (/(?=.*[a-z])/.test(senhaInput.value) === false) {
+      adicionarErro(
+        "A senha precisa ter no mínimo 1 letra minúscula",
+        senhaErros
+      );
+    }
 
-      // nao tem letra maiuscula
-      if (/(?=.*[A-Z])/.test(senhaInput.value) === false) {
-        adicionarErro(
-          "A senha precisa ter no mínimo 1 letra maiúscula",
-          senhaErros
-        );
-      }
+    // nao tem letra maiuscula
+    if (/(?=.*[A-Z])/.test(senhaInput.value) === false) {
+      adicionarErro(
+        "A senha precisa ter no mínimo 1 letra maiúscula",
+        senhaErros
+      );
     }
     senhaErros.style.display = "flex";
   }
