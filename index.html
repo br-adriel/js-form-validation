@@ -19,10 +19,12 @@
         <div class="campo">
           <label for="email">Email:</label>
           <input type="email" name="email" id="email" required minlength="8" />
+          <div class="erros" id="erro-email"></div>
         </div>
         <div class="campo">
           <label for="pais">País:</label>
           <input type="text" name="pais" id="pais" required minlength="3" />
+          <div class="erros" id="erro-pais"></div>
         </div>
         <div class="campo">
           <label for="cep">CEP:</label>
@@ -34,6 +36,7 @@
             minlength="8"
             maxlength="8"
           />
+          <div class="erros" id="erro-cep"></div>
         </div>
         <div class="campo">
           <label for="senha">Senha:</label>
@@ -44,6 +47,7 @@
             minlength="8"
             required
           />
+          <div class="erros" id="erro-senha"></div>
         </div>
         <div class="campo">
           <label for="senha2">Confirmação de senha:</label>
@@ -54,6 +58,7 @@
             minlength="8"
             required
           />
+          <div class="erros" id="erro-senha2"></div>
         </div>
         <button type="submit">Enviar</button>
       </form>
