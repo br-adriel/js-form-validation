@@ -82,12 +82,12 @@ button:hover {
   background: #269986;
 }
 
-.valido {
+.invalido {
   border: 1px solid var(--invalido);
   background: var(--bg-invalido);
 }
 
-.invalido {
+.valido {
   border: 1px solid var(--valido);
   background: var(--bg-valido);
 }
