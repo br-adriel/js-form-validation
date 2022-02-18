@@ -11,6 +11,16 @@ function adicionarErro(msg, divErro) {
   divErro.appendChild(p);
 }
 
+function tornarValido(input) {
+  input.classList.remove("invalido");
+  input.classList.add("valido");
+}
+
+function tornarInvalido(input) {
+  input.classList.remove("valido");
+  input.classList.add("invalido");
+}
+
 // Input de email
 const emailInput = document.getElementById("email");
 const emailErros = document.getElementById("erro-email");
@@ -23,13 +33,11 @@ emailInput.addEventListener("focusin", () => {
 
 emailInput.addEventListener("focusout", () => {
   if (emailInput.checkValidity()) {
-    emailInput.classList.remove("invalido");
-    emailInput.classList.add("valido");
+    tornarValido(emailInput);
 
     emailErros.style.display = "none";
   } else {
-    emailInput.classList.remove("valido");
-    emailInput.classList.add("invalido");
+    tornarInvalido(emailInput);
 
     limparErros(emailErros);
     // verifica se foi preenchido
@@ -65,13 +73,11 @@ paisInput.addEventListener("focusin", () => {
 
 paisInput.addEventListener("focusout", () => {
   if (paisInput.checkValidity()) {
-    paisInput.classList.remove("invalido");
-    paisInput.classList.add("valido");
+    tornarValido(paisInput);
 
     emailErros.style.display = "none";
   } else {
-    paisInput.classList.remove("valido");
-    paisInput.classList.add("invalido");
+    tornarInvalido(paisInput);
 
     limparErros(paisErros);
 
@@ -100,14 +106,10 @@ cepInput.addEventListener("focusin", () => {
 
 cepInput.addEventListener("focusout", () => {
   if (cepInput.checkValidity()) {
-    cepInput.classList.remove("invalido");
-    cepInput.classList.add("valido");
-
+    tornarValido(cepInput);
     cepErros.style.display = "none";
   } else {
-    cepInput.classList.remove("valido");
-    cepInput.classList.add("invalido");
-
+    tornarInvalido(cepInput);
     limparErros(cepErros);
 
     // verifica se esta preechido
@@ -143,13 +145,10 @@ senhaInput.addEventListener("focusin", () => {
 
 senhaInput.addEventListener("focusout", () => {
   if (senhaInput.checkValidity()) {
-    senhaInput.classList.remove("invalido");
-    senhaInput.classList.add("valido");
-
+    tornarValido(senhaInput);
     senhaErros.style.display = "none";
   } else {
-    senhaInput.classList.remove("valido");
-    senhaInput.classList.add("invalido");
+    tornarInvalido(senhaInput);
 
     limparErros(senhaErros);
 
@@ -198,37 +197,35 @@ senha2Input.addEventListener("focusin", () => {
 });
 
 senha2Input.addEventListener("focusout", () => {
-  if (senha2Input.checkValidity()) {
-    senha2Input.classList.remove("invalido");
-    senha2Input.classList.add("valido");
+  limparErros(senha2Erros);
+  senha2Erros.style.display = "none";
 
-    senha2Erros.style.display = "none";
-  } else {
-    senha2Input.classList.remove("valido");
-    senha2Input.classList.add("invalido");
+  tornarValido(senha2Input);
 
-    limparErros(senha2Erros);
-
-    // verifica se ta preenchido
-    if (senha2Input.validity.valueMissing) {
-      adicionarErro(
-        "A confirmação de senha é um campo obrigatório",
-        senha2Erros
-      );
-    }
-
-    // verifica se atende comprimento minimo
-    if (senha2Input.validity.tooShort) {
-      adicionarErro(
-        "A confirmação de senha precisa ter no mínimo 8 carcteres",
-        senha2Erros
-      );
-    }
-
-    // verifica se esta diferente do campo de senha
-    if (senhaInput.value !== senha2Input.value) {
-      adicionarErro("As senhas são diferentes", senha2Erros);
-    }
+  // verifica se ta preenchido
+  if (senha2Input.validity.valueMissing) {
+    adicionarErro("A confirmação de senha é um campo obrigatório", senha2Erros);
+    tornarInvalido(senha2Input);
     senha2Erros.style.display = "flex";
+    senha2Input.setCustomValidity("Inválido");
+  }
+
+  // verifica se atende comprimento minimo
+  if (senha2Input.validity.tooShort) {
+    adicionarErro(
+      "A confirmação de senha precisa ter no mínimo 8 carcteres",
+      senha2Erros
+    );
+    tornarInvalido(senha2Input);
+    senha2Erros.style.display = "flex";
+    senha2Input.setCustomValidity("Inválido");
+  }
+
+  // verifica se esta diferente do campo de senha
+  if (senhaInput.value !== senha2Input.value) {
+    adicionarErro("As senhas são diferentes", senha2Erros);
+    tornarInvalido(senha2Input);
+    senha2Erros.style.display = "flex";
+    senha2Input.setCustomValidity("Inválido");
   }
 });
