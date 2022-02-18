@@ -32,12 +32,17 @@ emailInput.addEventListener("focusout", () => {
     emailInput.classList.add("invalido");
 
     limparErros(emailErros);
+    // verifica se foi preenchido
     if (emailInput.validity.valueMissing) {
       adicionarErro("O email é um campo obrigatório", emailErros);
     }
+
+    // verifica se atende ao comprimento minimo
     if (emailInput.validity.tooShort) {
       adicionarErro("O email precisa ter no mínimo 8 caracteres", emailErros);
     }
+
+    // verifica se atende ao formato especificado
     if (emailInput.validity.typeMismatch) {
       adicionarErro(
         "O email precisa ter o formato nome@exemplo.com",
@@ -69,9 +74,13 @@ paisInput.addEventListener("focusout", () => {
     paisInput.classList.add("invalido");
 
     limparErros(paisErros);
+
+    // verifica se foi preechido
     if (paisInput.validity.valueMissing) {
       adicionarErro("O país é um campo obrigatório", paisErros);
     }
+
+    // verifica se atende comprimento minimo
     if (paisInput.validity.tooShort) {
       adicionarErro("O país precisa ter no mínimo 3 caracteres", paisErros);
     }
@@ -100,12 +109,18 @@ cepInput.addEventListener("focusout", () => {
     cepInput.classList.add("invalido");
 
     limparErros(cepErros);
+
+    // verifica se esta preechido
     if (cepInput.validity.valueMissing) {
       adicionarErro("O CEP é um campo obrigatório", cepErros);
     }
+
+    // verifica se atende comprimento minimo
     if (cepInput.validity.tooShort) {
       adicionarErro("O CEP precisa ter 8 números", cepErros);
     }
+
+    // verifica se atende formato especificado
     if (cepInput.validity.patternMismatch) {
       adicionarErro(
         "O CEP precisa estar no formato 12345-678 ou 12345678",
@@ -113,5 +128,64 @@ cepInput.addEventListener("focusout", () => {
       );
     }
     cepErros.style.display = "flex";
+  }
+});
+
+// Input de Senha
+const senhaInput = document.getElementById("senha");
+const senhaErros = document.getElementById("erro-senha");
+
+senhaInput.addEventListener("focusin", () => {
+  senhaInput.classList.remove("invalido");
+  senhaInput.classList.remove("valido");
+  senhaErros.style.display = "none";
+});
+
+senhaInput.addEventListener("focusout", () => {
+  if (senhaInput.checkValidity()) {
+    senhaInput.classList.remove("invalido");
+    senhaInput.classList.add("valido");
+
+    senhaErros.style.display = "none";
+  } else {
+    senhaInput.classList.remove("valido");
+    senhaInput.classList.add("invalido");
+
+    limparErros(senhaErros);
+
+    // verifica se ta preenchido
+    if (senhaInput.validity.valueMissing) {
+      adicionarErro("A senha é um campo obrigatório", senhaErros);
+    }
+
+    // verifica se atende comprimento minimo
+    if (senhaInput.validity.tooShort) {
+      adicionarErro("A senha precisa ter no mínimo 8 carcteres", senhaErros);
+    }
+
+    // verifica se atende ao formato especificado
+    if (senhaInput.validity.patternMismatch) {
+      // nao tem numero
+      if (/(?=.*[0-9])/.test(senhaInput.value) === false) {
+        adicionarErro("A senha precisa ter no mínimo 1 número", senhaErros);
+      }
+
+      // nao tem letra minuscula
+      if (/(?=.*[a-z])/.test(senhaInput.value) === false) {
+        adicionarErro(
+          "A senha precisa ter no mínimo 1 letra minúscula",
+          senhaErros
+        );
+      }
+
+      // nao tem letra maiuscula
+      if (/(?=.*[A-Z])/.test(senhaInput.value) === false) {
+        adicionarErro(
+          "A senha precisa ter no mínimo 1 letra maiúscula",
+          senhaErros
+        );
+      }
+    }
+    senhaErros.style.display = "flex";
   }
 });
