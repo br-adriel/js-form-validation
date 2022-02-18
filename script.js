@@ -78,3 +78,40 @@ paisInput.addEventListener("focusout", () => {
     paisErros.style.display = "flex";
   }
 });
+
+// Input de CEP
+const cepInput = document.getElementById("cep");
+const cepErros = document.getElementById("erro-cep");
+
+cepInput.addEventListener("focusin", () => {
+  cepInput.classList.remove("invalido");
+  cepInput.classList.remove("valido");
+  cepErros.style.display = "none";
+});
+
+cepInput.addEventListener("focusout", () => {
+  if (cepInput.checkValidity()) {
+    cepInput.classList.remove("invalido");
+    cepInput.classList.add("valido");
+
+    cepErros.style.display = "none";
+  } else {
+    cepInput.classList.remove("valido");
+    cepInput.classList.add("invalido");
+
+    limparErros(cepErros);
+    if (cepInput.validity.valueMissing) {
+      adicionarErro("O CEP é um campo obrigatório", cepErros);
+    }
+    if (cepInput.validity.tooShort) {
+      adicionarErro("O CEP precisa ter 8 números", cepErros);
+    }
+    if (cepInput.validity.patternMismatch) {
+      adicionarErro(
+        "O CEP precisa estar no formato 12345-678 ou 12345678",
+        cepErros
+      );
+    }
+    cepErros.style.display = "flex";
+  }
+});
