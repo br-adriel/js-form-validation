@@ -18,11 +18,25 @@
       <form action="#">
         <div class="campo">
           <label for="email">Email:</label>
-          <input type="email" name="email" id="email" required minlength="8" />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            minlength="8"
+            placeholder="Ex.: seunome@exemplo.com"
+          />
         </div>
         <div class="campo">
           <label for="pais">País:</label>
-          <input type="text" name="pais" id="pais" required minlength="3" />
+          <input
+            type="text"
+            name="pais"
+            id="pais"
+            required
+            minlength="3"
+            placeholder="Brasil"
+          />
         </div>
         <div class="campo">
           <label for="cep">CEP:</label>
@@ -33,15 +47,28 @@
             required
             minlength="8"
             maxlength="8"
+            placeholder="12345-789"
           />
         </div>
         <div class="campo">
           <label for="senha">Senha:</label>
-          <input type="password" name="senha" id="senha" minlength="8" />
+          <input
+            type="password"
+            name="senha"
+            id="senha"
+            minlength="8"
+            required
+          />
         </div>
         <div class="campo">
           <label for="senha2">Confirmação de senha:</label>
-          <input type="password" name="senha2" id="senha2" minlength="8" />
+          <input
+            type="password"
+            name="senha2"
+            id="senha2"
+            minlength="8"
+            required
+          />
         </div>
         <button type="submit">Enviar</button>
       </form>
