@@ -48,11 +48,12 @@
             id="senha"
             minlength="8"
             required
+            pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*"
           />
         </div>
         <div class="campo">
-          <div class="erros" id="erro-senha2"></div>
           <label for="senha2">Confirmação de senha:</label>
+          <div class="erros" id="erro-senha2"></div>
           <input
             type="password"
             name="senha2"
