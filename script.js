@@ -229,3 +229,11 @@ senha2Input.addEventListener("focusout", () => {
     senha2Input.setCustomValidity("Inválido");
   }
 });
+
+const form = document.getElementsByTagName("form")[0];
+form.addEventListener("submit", (e) => {
+  if (!form.checkValidity()) {
+    e.preventDefault();
+    alert("Impossível enviar, há campos inválidos!");
+  }
+});
